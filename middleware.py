@@ -2,7 +2,8 @@
 
 from django.utils.deprecation import MiddlewareMixin
 from ipaddress import ip_address, ip_network
-
+from django.http import HttpResponseForbidden
+from django.urls import reverse
 CLOUDFLARE_IP_RANGES = [
     '173.245.48.0/20',
     '103.21.244.0/22',
@@ -26,12 +27,7 @@ class CloudflareMiddleware(MiddlewareMixin):
             request.META['REMOTE_ADDR'] = request.META['HTTP_CF_CONNECTING_IP']
         return None
 
-class CloudflareCSRFMiddleware(MiddlewareMixin):
-    def process_request(self, request):
-        ip = ip_address(request.META['REMOTE_ADDR'])
-        if any(ip in ip_network(cf_ip) for cf_ip in CLOUDFLARE_IP_RANGES):
-            setattr(request, '_dont_enforce_csrf_checks', True)
-        return None
+
 # app/middleware.py
 
 class CloudflareCSRFMiddleware(MiddlewareMixin):
@@ -43,3 +39,16 @@ class CloudflareCSRFMiddleware(MiddlewareMixin):
             setattr(request, '_dont_enforce_csrf_checks', True)
         return None
 
+class AdminIPWhitelistMiddleware:
+       def __init__(self, get_response):
+           self.get_response = get_response
+           self.allowed_ip = '14.169.16.171'
+
+       def __call__(self, request):
+           admin_path = reverse('admin:index')
+           if request.path.startswith(admin_path):
+               client_ip = request.META['REMOTE_ADDR']
+               if client_ip != self.allowed_ip:
+                   return HttpResponseForbidden('Access denied.')
+           response = self.get_response(request)
+           return response
