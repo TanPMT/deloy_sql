@@ -1,0 +1,307 @@
+{% extends "Manage/base.html" %}
+{%load static%}
+{%block title%}
+<title>Friend of Farmer | Trang chủ</title>
+{% endblock title%}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/index.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
+{% endblock head %}
+
+
+
+{%block content_index%}
+
+<!-- BANNER  -->
+<section class="banner container-fluid section">
+	<div class="banner__row row">	
+		<div class="col-5 ba__col5">
+			<div class="container ba__text">
+				<h3 class="animate__animated animate__fadeInDown">HỆ SINH THÁI NÔNG NGHIỆP HIỆN ĐẠI</h3>
+				<p class="animate__animated animate__fadeInUp">Đáp ứng các nhu cầu cần thiết của nông dân. Là người bạn tin cậy đem lại nguồn thị trường rộng mở. Cầu nối giữa nông dân và thương lái.</p>
+				<div class="banner__sub row animate__animated animate__fadeInUp">
+					<div class="col-4 sub__col">
+						<span><i class="fa fa-paper-plane"></i>&nbsp; Kiến thức</span>
+					</div>
+					<div class="col-4 sub__col">
+						<span><i class="fa fa-paper-plane"></i>&nbsp; Kinh nghiệm</span>
+					</div>
+					<div class="col-4 sub__col">
+						<span><i class="fa fa-paper-plane"></i>&nbsp; Trải nghiệm</span>
+					</div>
+				</div>
+
+				<div class="banner__item d-flex">
+					<div class="banner__get">
+						<a class="nav-link" href="{%url 'aboutus'%}"> Get Started </a>
+					</div>
+					<div class="banner__get">
+						<a class="nav-link" href="{%url 'manage'%}">Manage Now!</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	  
+			<div class="col-7 ba__col7 bg">
+				<div class="overplay"></div>
+			</div>
+	   
+	</div>
+</section>
+
+<!-- NUMBER  -->
+<section class="number container section">
+	<h3>NHỮNG CON SỐ ẤN TƯỢNG</h3>
+	<div class="num__row row">
+		<div class="col-lg-4 num__col4 col-12">
+			<div class="row sub__row">
+				<div class="col-3 sub__col3">
+					<i class="fa fa-plane-departure"></i>
+				</div>
+				<div class="col-9 sub__col9">
+					<h3>10000+</h3>
+					<p>Lượt sử dụng trang web để quản lý nông sản.</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 num__col4 col-12">
+			<div class="row sub__row">
+				<div class="col-3 sub__col3">
+					<i class="fa fa-plane-departure"></i>
+				</div>
+				<div class="col-9 sub__col9">
+					<h3>24M+</h3>
+					<p>Lượt xác nhận đặt hàng giữa thương lái và nông dân</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 num__col4 col-12">
+			<div class="row sub__row">
+				<div class="col-3 sub__col3">
+					<i class="fa fa-plane-departure"></i>
+				</div>
+				<div class="col-9 sub__col9">
+					<h3>100+</h3>
+					<p>Nguồn cung cấp nguyên vật liệu với mức giá rẻ nhất.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<!-- OFFER  -->
+<section class="offer container section">
+	<div class="offer__text">
+		<h3>DỊCH VỤ</h3>
+		<p>Chúng tôi cung cấp đến người nông dân cũng như thương lái một môi trường tuyệt vời nhất để đáp ứng nhu cầu của bạn.</p>
+	</div>
+
+	<div class="offer__content">
+		<div class="offer__row row">
+			<div class="col-7 of__col7">
+				<i class="fa fa-place-of-worship"></i>
+				<h3>Quản lý Nông sản</h3>
+				<p>Quản lý nguồn nông sản hiệu quả. Cung cấp cái nhìn tổng thể về doanh thu và năng suất cây trồng. Đồng thời, áp dụng công nghệ vào trong trồng trọt và thương mại.</p>
+
+				<button class="my-btn">
+					<a class="nav-link" href="{%url 'manage'%}">Learn More</a>
+				</button>
+			</div>
+			
+			<div class="col-5 of__col5">
+				<img class="img-fluid" src="{% static 'Manage/IMG/img4.jpg' %}" alt="">
+			</div>
+		</div> 
+		<div class="offer__row row">
+			<div class="col-5 of__col5">
+				<img class="img-fluid" src="{% static 'Manage/IMG/feedback.jpg' %}" alt="">
+			</div>
+			<div class="col-7 of__col7">
+				<i class="fa fa-place-of-worship"></i>
+				<h3>Thị trường tiêu thụ</h3>
+				<p>Trở thành 1 FOF-er, bạn có cơ hội tiếp cận với hơn 100+ từ các thương lái đã kí kết với chúng tôi. Chúng tôi luôn tìm kiếm cho bạn đầu ra phù hợp với nhu cầu và niềm tin của bạn.</p>
+
+				<button class="my-btn">
+					<a class="nav-link" href="{%url 'maker'%}">Learn More</a>
+				</button>
+			</div>
+			
+		</div>
+		<div class="offer__row row">
+			<div class="col-7 of__col7">
+				<i class="fa fa-place-of-worship"></i>
+				<h3>Tìm kiếm nguyên vật liệu</h3>
+				<p>Tại đây, bạn có thể tìm kiếm cái nguyên, vật liệu nông nghiệp, hạt giống và phân bón với giá cả phải chăng, phù hợp với nhu cầu và khả năng của bạn.</p>
+
+				<button class="my-btn">
+					<a class="nav-link" href="{%url 'search'%}"> Learn More </a>
+				</button>
+			</div>
+			<div class="col-5 of__col5">
+				<img class="img-fluid" src="{% static 'Manage/IMG/slide1.jpg'%}" alt="">
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- CUSTOMER  -->
+<section class="customer section container">
+	<div class="offer__text">
+		<h3>PHẢN HỒI TỪ NGƯỜI DÙNG</h3>
+		<p>FOF tin rằng dịch vụ mà chúng tôi mang lại là sự hài lòng hoàn hảo mà nhà nông cũng như thương lái để lại những feedback tuyệt vời cho chúng tôi.</p>
+	</div>
+	<div class="cus__row row">
+		<div class="col-lg-3 col-6 cus_col3">
+			<div class="card" style="width: 18rem;">
+				<img src="{% static 'Manage/IMG/feedback8.jpg'%}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Ông Năm</h5>
+				  <p class="card-text">Trang web này thật sự hữu ích! Tôi có thể dễ dàng quản lí mùa vụ và tìm kiếm thị trường mới cho sản phẩm của mình. Cảm ơn bạn đã tạo ra một nền tảng tốt như vậy!</p>
+				  <button class="my-btn" onclick="window.location.href = '{%url 'feedback'%}'">See More!</button>
+				</div>
+			  </div>
+		</div>
+		<div class="col-lg-3 col-6 cus_col3">
+			<div class="card" style="width: 18rem;">
+				<img src="{% static 'Manage/IMG/feedback9.jpg'%}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Bà Lan</h5>
+				  <p class="card-text">Tìm khách hàng trước đây luôn là một vấn đề lớn, nhưng giờ đây với trang web này, tôi không còn phải lo lắng nữa. Tìm kiếm khách hàng và kết nối với họ chưa bao giờ dễ dàng đến thế</p>
+				  <button class="my-btn" onclick="window.location.href = '{%url 'feedback'%}'">See More!</button>
+				</div>
+			  </div>
+		</div>
+		<div class="col-lg-3 col-6 cus_col3">
+			<div class="card" style="width: 18rem;">
+				<img src="{% static 'Manage/IMG/feedback7.jpg'%}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Bà Hai</h5>
+				  <p class="card-text">Tôi rất ấn tượng với tính năng tìm kiếm nguyên vật liệu cho mùa vụ trên trang web này. Nó giúp tôi tiết kiệm thời gian và công sức trong việc tìm nguồn nguyên liệu chất lượng cho nông trại của mình.</p>
+				  <button class="my-btn" onclick="window.location.href = '{%url 'feedback'%}'">See More!</button>
+				</div>
+			  </div>
+		</div>
+		<div class="col-lg-3 col-6 cus_col3">
+			<div class="card" style="width: 18rem;">
+				<img src="{% static 'Manage/IMG/feedback6.jpg'%}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Ông Sang</h5>
+				  <p class="card-text">Trang web này thực sự là một công cụ quan trọng cho ngành nông nghiệp. Tôi đã có cơ hội mở rộng thị trường và tìm được các đối tác kinh doanh mới, từ đó giúp tăng doanh thu và hiệu suất sản xuất. Rất cảm kích những gì bạn đã làm!</p>
+				  <button class="my-btn" onclick="window.location.href = '{%url 'feedback'%}'">See More!</button>
+				</div>
+			  </div>
+		</div>
+	</div>
+</section>
+
+
+<!-- REGISTER  -->
+<section class="feedback container-fluid section">	
+	<div class="row feed__row">
+		<div class="col-6 fe__col6__1 ">
+			<h3>TRỞ THÀNH MẢNH GHÉP CỦA HỆ THỐNG FOF</h3>
+			<p>Hãy đăng ký ngay tài khoản của bạn với chúng tôi để nhận được những thông báo cũng như những dịch vụ
+				tuyệt vời nhất từ chúng tôi.</p>
+			<div class="feed__form">
+				<form method="POST" action="{% url 'subscribe' %}">
+					{% csrf_token %}
+					<input type="email" name="email" placeholder="Nhập địa chỉ email">
+					<button class="my-btn my-3">Đăng ký</button>
+				</form>
+			</div>
+		</div>
+		<div class="col-6 fe__col6 bg">
+			<div class="overplay"></div>
+		</div>
+	</div>
+</section>
+
+{% if user.is_authenticated %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>
+	function startTour() {
+		if (localStorage.getItem('doneTourIndex') === 'yes') {
+			// Tour đã được hoàn thành trước đây; không hiện tour
+			return;
+		}
+
+		var intro = introJs();
+		intro.setOptions({
+			showProgress: true,
+			showBullets: false,
+			steps: [
+				{
+					title: 'WELCOME',
+					intro: 'Chào mừng đến với website Friend of Farmer - FOF'
+				},
+				{
+					element: '#navbarSupportedContent',
+					intro: 'Đây là những công cụ vô cùng hữu ích cho bạn'
+				},
+				{
+					element: '#manageItem',
+					intro: 'Giúp bạn quản lý thời gian của vụ mùa, tình trạng đất đai, năng suất cây trồng'
+				},
+				{
+					element: '#tradeItem',
+					intro: 'Giúp bạn tìm kiếm thị trường giá cả nông sản lý tưởng'
+				},
+				{
+					element: '#materialItem',
+					intro: 'Giúp bạn tìm kiếm nguyên liệu nông nghiệp một cách nhanh chóng'
+				},
+				{
+					element: '#contactItem',
+					intro: 'Nếu bạn cần bất kì sự hỗ trợ hoặc cần giải đáp các thiết mắc, hãy dùng nó'
+				},
+				{
+					element: '#hotNewsItem',
+					intro: 'Cập nhật các tin nóng mới nhất trong cả cộng đồng người dùng'
+				},
+				{
+					element: '#listItem',
+					intro: 'Danh mục'
+				},
+				{
+					element: '#notifyItem',
+					intro: 'Nơi xem những thông báo mới nhất giữa bạn và thương lái'
+				},
+				{
+					element: '#search-input',
+					intro: 'Tra cứu bất cứ điều gì trong website của chúng tôi'
+				},
+				{
+					element: '#login',
+					intro: 'Trước hết hãy bắt đầu với việc điền thông tin của bạn bằng cách click vào đây!'
+				}
+			]
+		});
+
+		intro.oncomplete(function() {
+			// Khi người dùng nhấn "Done", set giá trị trong localStorage
+			localStorage.setItem('doneTourIndex', 'yes');
+		});
+
+		intro.onexit(function() {
+			// Cũng set giá trị khi người dùng thoát ra khỏi intro
+			localStorage.setItem('doneTourIndex', 'yes');
+		});
+
+		// Khởi tạo tour
+		intro.start();
+	}
+
+	// Kiểm tra trạng thái tour khi trang được tải
+	window.onload = function() {
+		if (localStorage.getItem('doneTourIndex') !== 'yes') {
+			localStorage.setItem('doneTourIndex', 'no');
+			startTour();
+		}
+	};	
+</script>
+{%endif%}
+
+{%endblock content_index%}

@@ -1,0 +1,39 @@
+{% extends "Manage/base.html" %}
+{%load static%}
+{%block title%}
+<title>Friend of Farmer | About Us</title>
+{% endblock title%}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/aboutus.css' %}">
+{% endblock head %}
+
+
+
+{%block content_aboutus%}
+
+<section>
+    <div class="aboutus_container container">
+        <div class="aboutus_container container_top">
+            <img class="image" src="{% static 'Manage/IMG/aboutus1.jpg'%}">
+            <div class="topText">
+                <p class="txt_headingTxt">GIỚI THIỆU</p>
+                <p class="txt_subHeadingTxt">Friend of Famer là nền tảng hoàn chỉnh giúp nông dân quản lí mùa vụ nông sản hiệu quả.</p>
+                <p class="txt_content">Với hệ thống quản lí mùa vụ hiện đại, nông dân có thể điều khiển được chất lượng và số lượng của nông sản. Chúng tôi sẽ đưa ra những lời khuyên hợp lí nhất cho mùa vụ của bạn đạt được lợi nhuận tốt nhất.</p>
+                <button class="explore" onclick="window.location.href='{% url 'manage' %}'">Khám phá</button>
+            </div>
+        </div>
+    
+        <div class="aboutus_container container_top bottom ">
+            <div class="bottomText">
+                <p class="txt_headingTxt">TÍNH NĂNG</p>
+                <p class="txt_subHeadingTxt">Friend of Famer là giúp nông dân có được giá cả hợp lí cho nông sản của mình. </p>
+                <p class="txt_content"> Với tính năng tìm kiếm thị trường, thông tin về xu hướng thị trường, biểu đồ giá cả cập nhật, và các dự báo về thị trường  được cung cấp một cách chính xác. Điều này giúp nông dân nắm bắt thông tin quan trọng để đưa ra quyết định kinh doanh trong thời gian ngắn nhất. </p>
+            <button class="explore" onclick="window.location.href='{% url 'maker' %}'">Khám phá</button>
+            </div>
+            <img class="image" src="{% static 'Manage/IMG/aboutus2.jpg'%}">
+        </div>
+    </div>
+    </section>
+    
+
+{%endblock content_aboutus%}

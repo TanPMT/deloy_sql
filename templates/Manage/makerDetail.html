@@ -1,0 +1,53 @@
+{% extends "Manage/base.html"%}
+{% load static %}
+{% block head %}
+{%block title%}
+<title>Friend of Farmer | Chi tiết</title>
+{% endblock title%}
+<link rel="stylesheet" href="{%static 'Manage/CSS/makerDetail.css'%}"/>
+{% endblock head %}
+{% block content %}
+		<!-- DETAIL -->
+	<section class="detail section">
+		<div class="detail__notify">
+			<p>Thông báo đến bạn: Vui lòng đọc kỹ các yêu cầu và cách thức liên hệ.</p>
+		</div>	
+		
+			<div class="detail__new">
+			<form method="POST" id="form_sm">
+			{% csrf_token %}
+				<p>Thị trường {{market.marketPlant}}</p>
+				<h2>Khu vực {{market.marketName}}</h2>
+				<p class = "success"> {{market.marketFee}} </p>
+
+				<h3>Thông tin về Thương lái</h3>
+				<p><span style="font-weight: bold;">Họ và tên:</span> &nbsp {{customer.name}}</p>
+				<p><span style="font-weight: bold;">Địa chỉ:</span> &nbsp {{customer.address}}</p>
+				<p><span style="font-weight: bold;">Ngày sinh:</span> &nbsp {{customer.birthday}}</p>
+				<h3>Thông tin về Thị trường</h3>
+				<p>{{market.marketDetail}}</p>
+
+				<h3>Thông tin liên hệ</h3>
+				<p>Phone: {{customer.phonenum}}</p>
+				<p>Email: {{customer.email}}</p>
+				<p>Nếu đã đọc kỹ thông tin, hãy ấn xác nhận liên hệ</p>
+				<div class="detail__confirm my-3">				
+					<button class="my-btn">XÁC NHẬN</button>
+				</div>
+			</form>
+			</div>
+		
+			<div class="detail__confirm my-3">				
+				<button class="my-btn block"><a href="{% url 'maker' %}">TRỞ VỀ</a></button>
+			</div>
+		</div>
+	</section>
+{% endblock content %}
+{% block js_LP %}
+<script>
+	{% if message %}
+        alert('{{ message }}');
+    {% endif %}
+</script>
+<script src="{% static 'Manage/JS/makerDetail.js'%}"></script>
+{% endblock js_LP %}

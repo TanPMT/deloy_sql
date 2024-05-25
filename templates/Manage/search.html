@@ -1,0 +1,156 @@
+{% extends "Manage/base.html" %}
+{% load static %}
+{%block title%}
+<title>Friend of Farmer | Nguyên vật liệu</title>
+{% endblock title%}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/search.css' %}">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
+{% endblock head %}
+
+{% block content %}
+   <!-- FINDING  -->
+   <section class="find container section">
+      <div class="find__row ">
+         <div class="filter"> 
+         </div>
+         <div class="find__content">
+            <div class="find__box" id="search_form">
+               <h3>TÌM KIẾM NGUYÊN VẬT LIỆU</h3>
+               <p>Giúp bạn tìm kiếm nguồn nguyên vật liệu nông nghiệp, hạt giống, phân bón với mức giá phải chăng!</p>
+
+               <form role="search" method="POST" action="{% url 'search' %}">
+                  {% csrf_token %}
+                  <input type="search" placeholder="Nhập sản phẩm muốn tìm kiếm" aria-label="search" class="my-input input-text" id="product" name="searched_name" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase()">
+                  <p>Sản Phẩm: {{ searched_name }}</p>
+                  <input type="search" placeholder="Nhập địa chỉ muốn tìm kiếm" aria-label="search" class="my-input input-text" id="searched_adr" name="searched_adr" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase()">
+                  <button class="my-btn" type="submit" id="submitButton">TÌM KIẾM</button>
+                  <p>Địa Chỉ: {{ searched_adr }}</p>
+               </form>
+                        
+                           
+               <div class="find__result d-flex justify-content-center row">
+                  {% for product in keys1 %}
+                     {%if product in keys %}
+                        <div class="find__item my-2 col-sm-3 mb-5">
+                           <img class="img-fluid" src="{{ product.IMG_URL }}" alt="sanpham">
+                           <p class="name" style="text-transform: uppercase;">{{ product.name }}</p>
+                           <p class="name" style="text-transform: uppercase;">{{ product.adress }}</p>
+                           <p class="prices">{{ product.price }} VND</p>
+                           <div class="find__start">
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                           </div>
+                           <button class="my-btn" style="margin-top: 2rem;" id="click1" onclick="location.href='{{ product.link }}'" target="_blank" rel="noopener noreferrer">
+                              MUA NGAY
+                           </button>
+                        </div>
+                     {%endif%}
+                  {% endfor %}
+               </div>
+             
+               
+            </div>
+         </div>
+      </div>
+   </section>
+
+   
+   {% block js_LP %}
+   <!--autocomplete code for searchadr and searched_name-->
+      <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+      <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+      <script>
+         $( function() {
+         
+         $( "#product" ).autocomplete({
+            source:'{%url 'searchname'%}'
+         });
+         } );
+      </script>
+         
+         <script>
+            $( function() {
+            
+            $( "#searched_adr" ).autocomplete({
+               source: '{%url 'searchadr'%}'
+            });
+            } );
+      </script>
+
+      <script>
+         // Function to sort products by price in ascending order
+         var products = document.querySelectorAll('.find__item');
+         var sortedProducts = Array.from(products).sort(function(a, b) {
+            var priceA = parseInt(a.querySelector('.prices').textContent);
+            var priceB = parseInt(b.querySelector('.prices').textContent);
+            return priceA - priceB;
+         });
+   
+         // Reorder the products in the DOM
+         var resultSection = document.querySelector('.find__result');
+         sortedProducts.forEach(function(product) {
+            resultSection.appendChild(product);
+         });
+      </script>
+   {% endblock js_LP %}
+   {% if user.is_authenticated %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>
+	function startTour() {
+		if (localStorage.getItem('doneTourMaterial') === 'yes') {
+			// Tour đã được hoàn thành trước đây; không hiện tour
+			return;
+		}
+
+		var intro = introJs();
+		intro.setOptions({
+			showProgress: true,
+			showBullets: false,
+			steps: [
+				{
+					intro: 'Đây là nơi tìm kiếm nguyên liệu cần thiết cho nông nghiệp'
+				},
+				{
+					element: '#search_form',
+					intro: 'Điền thông tin về nguyên liệu và địa điểm'
+				},
+				{
+					element: '#submitButton',
+					intro: 'Click để tìm kiếm'
+				},
+				{
+					intro: 'Xem các sản phẩm đề xuất bên dưới'
+				}
+			]
+		});
+
+		intro.oncomplete(function() {
+			// Khi người dùng nhấn "Done", set giá trị trong localStorage
+			localStorage.setItem('doneTourMaterial', 'yes');
+		});
+
+		intro.onexit(function() {
+			// Cũng set giá trị khi người dùng thoát ra khỏi intro
+			localStorage.setItem('doneTourMaterial', 'yes');
+		});
+
+		// Khởi tạo tour
+		intro.start();
+	}
+
+	// Kiểm tra trạng thái tour khi trang được tải
+	window.onload = function() {
+		if (localStorage.getItem('doneTourMaterial') !== 'yes') {
+			localStorage.setItem('doneTourMaterial', 'no');
+			startTour();
+		}
+	};
+</script>
+{%endif%}
+
+{% endblock content %}

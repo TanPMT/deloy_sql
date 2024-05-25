@@ -1,0 +1,229 @@
+{% extends 'Manage/base.html' %}
+{% load static %}
+{%block title%}
+<title>Friend of Farmer | Nhập thông tin</title>
+{% endblock title%}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Manage/CSS/userin4.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
+{% endblock head %}
+
+{% block form %}
+    {% if user.is_authenticated %}
+    <div class="infor container section"  data-title="Bảng thông tin" data-intro="Hãy hoàn thành nó nhé!">
+        <h2>Nhập thông tin người dùng</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {% if request.method == "POST" %}
+                {% include 'Manage/userin4.html' %}
+            {% else %}
+                <div >
+                    <div class="row input1"> 
+                        <div class="col-7 in__col">
+                            <label for="name" >Họ và tên:<span class="hide-on-mobile"> {{name}}</span></label><br>
+                            <input type="text" id="name" name="name" value="{{name}}" required><br><br>
+                        </div>
+                        <div class="col-5 in__col">
+                            <label for="birth">Ngày sinh:<span class="hide-on-mobile"> {{birth}}</span></label><br>
+                            <input type="date" id="birth" name="birth" value="{{birth}}"required><br><br>
+                        </div>
+                    </div> 
+                    
+                    <script>
+                        // Lấy ra input ngày sinh
+                        var input = document.getElementById('birth');
+                    
+                        // Ngày hiện tại
+                        var date = new Date(input.value);
+                    
+                        // Định dạng ngày tháng
+                        var formattedDate = ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
+                    
+                        // Gán lại giá trị định dạng vào label
+                        document.querySelector('label[for="birth"]').textContent = "Ngày sinh: " + formattedDate;
+                    </script>
+                    <div >
+                        <label for="type">Đối tượng: {{type}}</label><br>
+                        <select id="type" name="type">
+                            <option value="Nông dân">Nông dân</option>
+                            <option value="Thương lái">Thương lái</option>
+                        </select><br><br>
+                    </div>
+                </div>
+            
+                <div class="row input2"> 
+                    <div class="col-4 in__col">
+                        <label for="phone">Số điện thoại: {{phone}}</label><br>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10,11}" value = "{{phone}}" required><br><br>
+                    </div>
+
+                    <div class="in__col col-8">
+                        <label for="email">Email: {{user.email}}</label><br>
+                        <input type="email" id="email" name="email" value = "{{user.email}}" required><br><br>
+                    </div>    
+                </div> 
+                    
+                    <div >
+                        <label for="adr">Địa chỉ: {{adr}}</label><br>
+                        <input type="text" id="adr" name="adr" value = "{{adr}}" required><br><br>
+                        <!-- Gợi ý địa chỉ -->
+                        <div id="suggestions"></div>
+                    </div>
+                   
+           
+                {% comment %} {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %} {% endcomment %}
+                <div class="submit__group row">
+                    <div class="col-3"> 
+                        <input type="submit" value="Xác nhận">
+                    </div>
+
+                    <div class="col-3"> 
+                        <input class= "hahaha" type="button" id="editBtn" value="Sửa thông tin">
+                    </div>
+                    
+                   
+                </div>
+                
+            {% endif %}
+        </form>
+    </div>
+    {% else %}
+    <p>Vui lòng đăng nhập!</p>
+    {% endif %}
+    {% if user.is_authenticated %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>
+	function startTour() {
+		if (localStorage.getItem('doneTourIn4') === 'yes') {
+			// Tour đã được hoàn thành trước đây; không hiện tour
+			return;
+		}
+
+		var intro = introJs();
+		intro.setOptions({
+			showProgress: true,
+			showBullets: false,
+			steps: [
+				{
+					element: document.querySelector('.infor'),
+					intro: 'Điền thông tin cá nhân của bạn vào đây'
+				},
+                {
+                    title: 'Lưu ý',
+                    element: '#type',
+					intro: 'Chọn chế độ sử dụng, tuỳ theo việc bạn là nông dân hay thương lái mà sẽ có thể sử dụng các chức năng khác nhau!'
+				},
+				{
+					element: '#submitButton',
+					intro: 'Click để xác nhận thông tin'
+				},
+				{
+                    title: 'Lưu ý',
+					element: '#editBtn',
+					intro: 'Nếu bạn muốn chỉnh sửa thông tin của mình thì trước tiên phải click vào nút CHỈNH SỬA!'
+				}
+			]
+		});
+
+		intro.oncomplete(function() {
+			// Khi người dùng nhấn "Done", set giá trị trong localStorage
+			localStorage.setItem('doneTourIn4', 'yes');
+		});
+
+		intro.onexit(function() {
+			// Cũng set giá trị khi người dùng thoát ra khỏi intro
+			localStorage.setItem('doneTourIn4', 'yes');
+		});
+
+		// Khởi tạo tour
+		intro.start();
+	}
+
+	// Kiểm tra trạng thái tour khi trang được tải
+	window.onload = function() {
+		if (localStorage.getItem('doneTourIn4') !== 'yes') {
+			localStorage.setItem('doneTourIn4', 'no');
+			startTour();
+		}
+	};
+</script>
+{%endif%}
+    <script>
+
+        // Lấy ra nút "Sửa thông tin"
+        var editBtn = document.getElementById('editBtn');
+
+        // Lấy ra các trường input cần thay đổi thuộc tính "disabled"
+        var nameInput = document.getElementById('name');
+        var birthInput = document.getElementById('birth');
+        var typeInput = document.getElementById('type');
+        var phoneInput = document.getElementById('phone');
+        var emailInput = document.getElementById('email');
+        var adrInput = document.getElementById('adr');
+
+        // Mặc định: disable tất cả các trường input
+        nameInput.disabled = true;
+        birthInput.disabled = true;
+        typeInput.disabled = true;
+        phoneInput.disabled = true;
+        emailInput.disabled = true;
+        adrInput.disabled = true;
+
+        // Xử lý sự kiện khi người dùng nhấn vào nút "Sửa thông tin"
+        editBtn.addEventListener('click', function() {
+            // Enable tất cả các trường input
+            nameInput.disabled = false;
+            birthInput.disabled = false;
+            typeInput.disabled = false;
+            phoneInput.disabled = false;
+            emailInput.disabled = false;
+            adrInput.disabled = false;
+        });
+
+        introJs().setOption("dontShowAgain", true).start();
+
+        let searchInput = document.getElementById('adr');
+        searchInput.addEventListener('input', function() {
+            
+            document.addEventListener('click', function(e) {
+                
+    let suggestions = document.getElementById('suggestions');
+    if (e.target.id !== 'adr' && e.target.parentNode.id !== 'suggestions') {
+        suggestions.style.display = 'none';
+    }
+            });
+
+            searchInput.addEventListener('focus', function() {
+                let suggestions = document.getElementById('suggestions');
+                if (suggestions.innerHTML.trim() !== '') {
+                    suggestions.style.display = 'block';
+                }
+            });
+                        let query = this.value;
+            if (query.length > 1) { // Thực hiện tìm kiếm khi người dùng đã nhập ít nhất 3 ký tự
+                fetch(`https://rsapi.goong.io/Place/AutoComplete?api_key=irESJaYhu9GSYh2g8waOxsDolPKwMzkFcGKNGxNy&location=21.013715429594125,105.79829597455202&input=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    let suggestions = document.getElementById('suggestions');
+                    suggestions.innerHTML = ''; // Xóa các gợi ý cũ
+                    data.predictions.forEach(item => {
+                        let div = document.createElement('div');
+                        div.innerHTML = item.description;
+                        div.addEventListener('click', function() {
+                            searchInput.value = item.description; // Điền gợi ý vào ô tìm kiếm
+                            suggestions.innerHTML = ''; // Ẩn gợi ý sau khi chọn
+                        });
+                        suggestions.appendChild(div);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        });
+    </script>
+{% endblock form %}

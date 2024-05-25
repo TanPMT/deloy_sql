@@ -1,0 +1,272 @@
+{% extends "Manage/base.html"%}
+{% load static %}
+{%block title%}
+<title>Friend of Farmer | Tìm kiếm Thị trường</title>
+{% endblock title%}
+{% block head %}
+<link rel="stylesheet" href="{%static 'Manage/CSS/maker.css'%}"/>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous">
+</script>
+{% endblock head %}	
+{% block content %}
+	<!-- SEARCH BOX  -->
+	{%if user.is_authenticated%}
+	{% if customer.type_user is none %}
+		
+	<a class="error-link" href="{%url "userin4"%}" style="text-decoration: none;"><p class = "error">Bạn chưa nhập thông tin. Vui lòng nhập thông tin người dùng để sử dụng chức năng này</p></a>
+
+	{%else%}
+
+	
+	<section class="finding container section">
+		<div class="row find__row my-3">	
+			<div class="col-8 f_col8">
+				<h3>TÌM KIẾM THỊ TRƯỜNG TIÊU THỤ</h3>
+				<p>Hãy cho chúng tôi biết nông sản cùng với nơi bạn muốn bán nông sản. Chúng tôi sẽ tìm giúp bạn!</p>
+			</div>
+			<div class="col-4 f_col4" >
+				<div class="farm__mode f_btn">
+					<p><i class="fa fa-user-alt"></i>&nbsp;Farm Mode</p>
+				</div>
+				<div class="seller__mode f_btn" onclick="location.href='{%url 'maker_sell'%}'">
+					<p><i class="fa fa-users"></i>&nbsp;Sell Mode</p>
+				</div>
+			</div>
+		</div>
+		
+		{% if customer.type_user == 'Nông dân' %}
+		<div class="find__box">
+			<form action="" method = "POST">
+				{%csrf_token%}
+				<input type="text" name="product" id="Nongsan" placeholder="Nông sản muốn bán" style="uppercase;" oninput="this.value = this.value.toUpperCase()">
+				{% comment %} <p>Nông sản muốn bán: {{ product }}</p> {% endcomment %}
+				<input type="text" name="maker" id="Thitruong" placeholder="Nơi muốn bán" style="uppercase;" oninput="this.value = this.value.toUpperCase()">
+				{% comment %} <p>Nơi muốn bán: {{ maker }}</p> {% endcomment %}
+				<button id="submitButton">Tìm kiếm</button>
+			</form>
+		</div>
+	
+	</section>
+
+	<!-- RESULT  -->
+	<section class = "result container section">
+		<div class="d-inline-block">
+			<select class="form-select" aria-label="Sắp xếp sản phẩm">
+				<option selected disabled>Sắp xếp theo giá</option>
+				<option value="1">Tăng dần</option>
+				<option value="2">Giảm dần</option>
+			</select>
+		</div>
+		<div class="row my__row__header row__common">
+			<div class="col res__num common">
+				ID Market
+			</div>
+			<div class="col-2 res__name common">
+				Loại nông sản
+			</div>
+			<div class="col-2 res__place common">
+				Thị trường
+			</div>
+			<div class="col-2 res__suppli common">
+				Thương lái
+			</div>
+			<div class="col res__price common">
+				Giá cả (VNĐ/kg)
+			</div>
+			<div class="col-3 res__trend common">
+				Xu hướng giá
+			</div>
+			<div class="col res__check common">
+				Chi tiết thị trường
+			</div>
+
+		</div>
+	
+	
+		<section class="result1">	
+			
+			{% comment %} {%if obj in keys1%} {% endcomment %}
+			{% for obj in keys1 %}
+				{% if obj in keys2 %}
+					<div class="row my__row__res row__common align-items-center">
+						<div class="col res__num common">
+						<a href="{% url 'makerDetail' obj.id %}">
+							<span><i class="fa-regular fa-star"></i>&nbsp; {{ obj.id }}</span>
+						</a>
+						</div>
+						<div class="col-2 res__name common">
+						{{ obj.marketPlant }}
+						</div>
+						<div class="col-2 res__place common">
+						{{ obj.marketName }}
+						</div>
+						<div class="col-2 res__suppli common">
+						{{ obj.marketUser }}
+						</div>
+						<div class="col res__price common" style="color: #16c784;">
+						{{ obj.marketFee }}
+						</div>
+						<div class="col-3 res__trend common">
+						<img src="{% static 'Manage/IMG/825.svg' %}" alt="trend">
+						</div>
+						<div class="col res__check common confirm-btn" onclick="location.href='{%url 'makerDetail' obj.id%}'">
+						Chi Tiết
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</section>
+	</section>
+	<!-- REGISTER  -->
+	<section class="feedback container-fluid section">
+			<div class="row feed__row">
+				<div class="col-6 fe__col6__1 ">
+					<h3>TRỞ THÀNH MẢNH GHÉP CỦA HỆ THỐNG FOF</h3>
+					<p>Hãy đăng ký ngay tài khoản của bạn với chúng tôi để nhận được những thông báo cũng như những dịch vụ
+						tuyệt vời nhất từ chúng tôi.</p>
+					<div class="feed__form">
+						<form action="">
+							<input type="email" placeholder="Nhập địa chỉ email">
+							<button class="my-btn my-3">Đăng ký</button>
+						</form>
+					</div>
+				</div>
+				<div class="col-6 fe__col6 bg">
+					<div class="overplay"></div>
+				</div>
+			</div>
+	</section>
+	{%else%}
+	<p class = "error">BẠN KHÔNG CÓ QUYỀN SỬ DỤNG TÍNH NĂNG NÀY.</p>
+	{%endif%}
+	{%endif%}
+{%else%}
+<p class = "error">Vui lòng đăng nhập.</p>
+{%endif%}
+
+{% if user.is_authenticated %}
+{% if customer.type_user == 'Nông dân' %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>
+	function startTour() {
+		if (localStorage.getItem('doneTourMaker') === 'yes') {
+			// Tour đã được hoàn thành trước đây; không hiện tour
+			return;
+		}
+
+		var intro = introJs();
+		intro.setOptions({
+			showProgress: true,
+			showBullets: false,
+			steps: [
+				{
+					intro: 'Đây là thị trường tiềm năng theo nhu cầu của bạn'
+				},
+				{
+					element: document.querySelector('.find__box'),
+					intro: 'Điền thông tin về nông sản địa điểm mong muốn của bạn vào đây'
+				},
+				{
+					element: '#submitButton',
+					intro: 'Click để tìm kiếm'
+				},
+				{
+					element: document.querySelector('.result'),
+					intro: 'Xem các thị trường đề xuất'
+				}
+			]
+		});
+
+		intro.oncomplete(function() {
+			// Khi người dùng nhấn "Done", set giá trị trong localStorage
+			localStorage.setItem('doneTourMaker', 'yes');
+		});
+
+		intro.onexit(function() {
+			// Cũng set giá trị khi người dùng thoát ra khỏi intro
+			localStorage.setItem('doneTourMaker', 'yes');
+		});
+
+		// Khởi tạo tour
+		intro.start();
+	}
+
+	// Kiểm tra trạng thái tour khi trang được tải
+	window.onload = function() {
+		if (localStorage.getItem('doneTourMaker') !== 'yes') {
+			localStorage.setItem('doneTourMaker', 'no');
+			startTour();
+		}
+	};
+</script>
+{%endif%}
+{%endif%}
+{% endblock content %}
+
+{% block js_LP %}
+<script>
+	$(document).ready(function() {
+		// Bắt sự kiện khi người dùng thay đổi lựa chọn trong dropdown
+		$('.form-select').change(function() {
+			// Lấy giá trị đã chọn
+			var sortBy = $(this).val();
+			
+			// Sắp xếp các phần tử theo giá
+			if (sortBy === '1') {
+				// Sắp xếp tăng dần
+				var $sortedItems = $('.my__row__res').sort(function(a, b) {
+					var priceA = parseFloat($(a).find('.res__price').text().replace(/\D/g,''));
+					var priceB = parseFloat($(b).find('.res__price').text().replace(/\D/g,''));
+					return priceA - priceB;
+				});
+			} else if (sortBy === '2') {
+				// Sắp xếp giảm dần
+				var $sortedItems = $('.my__row__res').sort(function(a, b) {
+					var priceA = parseFloat($(a).find('.res__price').text().replace(/\D/g,''));
+					var priceB = parseFloat($(b).find('.res__price').text().replace(/\D/g,''));
+					return priceB - priceA;
+				});
+			}
+			
+			// Gắn các phần tử đã sắp xếp vào vị trí mới
+			$('.result1').html($sortedItems);
+		});
+		
+		// Mặc định sắp xếp khi trang được tải
+		// Ở đây, tôi sắp xếp mặc định theo giá tăng dần
+		var $sortedItems = $('.my__row__res').sort(function(a, b) {
+			var priceA = parseFloat($(a).find('.res__price').text().replace(/\D/g,''));
+			var priceB = parseFloat($(b).find('.res__price').text().replace(/\D/g,''));
+			return priceA - priceB;
+		});
+		$('.result1').html($sortedItems);
+	});
+</script>
+<!--autocomplete code for Nongsan and Thitruong-->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+			<script>
+			   $( function() {
+				 
+				 $( "#Nongsan" ).autocomplete({
+				   source:'{%url 'makerplant'%}'
+				 });
+			   } );
+			</script>
+			   
+			<script>
+				  $( function() {
+					
+					$( "#Thitruong" ).autocomplete({
+					  source: '{%url 'makeradr'%}'
+					});
+				  } );
+			</script>
+			
+  {% comment %} <script src="{% static 'Manage/JS/maker.js'%}"></script> {% endcomment %}
+{% endblock js_LP %}

@@ -1,0 +1,84 @@
+{% extends "Manage/base.html" %}
+{% load static %}
+{%block title%}
+<title>Friend of Farmer | Quản lý</title>
+{% endblock title%}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/m_form.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
+{% endblock head %}
+
+{% block form %}
+
+<section class="manage section container">
+  <form action="" method="post">  
+    {% csrf_token %} 
+    <p>THÔNG TIN MÙA VỤ</p>
+    <label for="name">Nhập tên mùa vụ:</label>
+    <input type="text" name="name" id="name">
+
+    <label for="time_s">Thời gian bắt đầu: </label>
+    <input type="date" name="time_s" id="time_s">
+
+    <label for="time_e">Thời gian kết thúc: </label>
+    <input type="date" name="time_e" id="time_e">
+
+    <label for="num">Lợi nhuận mong muốn: </label>
+    <input type="number" name="num" id="num">
+
+    <button class="my-btn" id="createFirstB">
+      TẠO MÙA VỤ
+    </button>
+  </form>
+</section>
+
+{% if user.is_authenticated %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>
+	function startTour() {
+		if (localStorage.getItem('doneTourmform') === 'yes') {
+			// Tour đã được hoàn thành trước đây; không hiện tour
+			return;
+		}
+
+		var intro = introJs();
+		intro.setOptions({
+			showProgress: true,
+			showBullets: false,
+			steps: [
+        {
+          element: document.querySelector('.manage'),
+          intro: 'Điền đầy đủ thông tin vào đây'
+        },
+        {
+          element: document.querySelector('#createFirstB'),
+          intro: 'Click để tạo'
+        }
+			]
+		});
+
+		intro.oncomplete(function() {
+			// Khi người dùng nhấn "Done", set giá trị trong localStorage
+			localStorage.setItem('doneTourmform', 'yes');
+		});
+
+		intro.onexit(function() {
+			// Cũng set giá trị khi người dùng thoát ra khỏi intro
+			localStorage.setItem('doneTourmform', 'yes');
+		});
+
+		// Khởi tạo tour
+		intro.start();
+	}
+
+	// Kiểm tra trạng thái tour khi trang được tải
+	window.onload = function() {
+		if (localStorage.getItem('doneTourmform') !== 'yes') {
+			localStorage.setItem('doneTourmform', 'no');
+			startTour();
+		}
+	};
+</script>
+{% endif %}
+
+{% endblock form %}

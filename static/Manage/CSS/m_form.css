@@ -1,0 +1,39 @@
+ /* MANAGE  */
+ .manage form p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #609966;
+    margin-bottom: 2rem;
+}
+.manage form label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #616E85;
+    margin-bottom: 1rem;
+}
+
+.manage form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.manage form input{
+    display: block;
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 50px;
+    background-color: #EFF2F5;
+    border: none;
+    border-radius: 5px;
+
+}
+@media screen and (max-width: 795px) {
+    .manage form p {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .manage form {
+        width: 75%;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,74 @@
+{% extends "Manage/base.html" %}
+{%load static%}
+{%block title%}
+<title>Friend of Farmer | Thông báo</title>
+{% endblock title%}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/notify.css' %}">
+{% endblock head %}
+
+
+{% block notify %}
+{% if user.is_authenticated%}
+
+ <!-- NOTIFY PAGE  -->
+
+ 
+ <section class="notify section container">
+    <form method="POST" action="">
+    {% csrf_token %}
+        <div class="noifi__header">
+            <div class="notifi__group1">
+                <h3>THÔNG BÁO</h3>
+                <div class="text">
+                    
+                </div>
+            </div>
+                
+            <button id="mark-as-read-btn" style="border: none; background-color: transparent;">Đánh dấu tất cả đã đọc.</button>
+           
+        </div>
+    </form> 
+        <div class="notify__content">
+            {% for NOTIFY in notify %}   
+            {% if NOTIFY.makerAuth == customer %}
+                <div class="row notifi__row">
+                    <div class="col-2 notifi__user__img">
+                        <i class="fa fa-user-alt"></i>
+                    </div>
+                    <div class="col-10 notifi__context">
+                        <a href="#"><p>{{ NOTIFY.customer }} đã tham gia vào thị trường của bạn {{ NOTIFY.maker }}<br/>Thời gian tham gia: {{ NOTIFY.timejoin }}</p></a>
+                    </div>
+                </div>
+            {% elif NOTIFY.customer == customer %}
+                <div class="row notifi__row">
+                    <div class="col-2 notifi__user__img">
+                        <i class="fa fa-user-alt"></i>
+                    </div>
+                    <div class="col-10 notifi__context">
+                        <a href="{{NOTIFY.link}}"><p style="color: #609966;">Bạn đã tham gia vào thị trường {{NOTIFY.maker}} của {{ NOTIFY.makerAuth }}<br/>Thời gian tham gia: {{ NOTIFY.timejoin }}</p></a>
+                    </div>
+                </div>
+            {% endif %} 
+        {% endfor %}
+        </div>
+
+</section>
+{%else%}
+<p class="error">Vui lòng đăng nhập.</p>
+{%endif%}
+
+    
+
+
+{% endblock notify %}
+
+{% block js_LP %}
+  <script src="{% static 'Manage/JS/notify.js'%}"></script>
+  <script>
+    document.getElementById("mark-as-read-btn").addEventListener("click", function() {
+        alert("Đã đánh dấu tất cả đã đọc.");
+        // Thêm mã JavaScript khác tùy thuộc vào cách bạn muốn xử lý việc đánh dấu tất cả đã đọc.
+    });
+    </script>
+{% endblock js_LP %}

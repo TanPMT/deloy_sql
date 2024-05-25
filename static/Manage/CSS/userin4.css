@@ -1,0 +1,209 @@
+
+
+  h2 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #609966;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: #5c5e5f;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="email"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-top: 5px;
+    background-color: #EFF2F5;
+}
+
+input[type="submit"], .hahaha {
+    width: 100%;
+    padding: 10px;
+    background-color: #609966;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all .5s;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.col-3{
+  width: 25%;
+}
+input[type="submit"]:hover, .hahaha:hover {
+    background-color: white; 
+    border: 1px solid #609966;
+    color: #609966;
+
+}
+  
+  
+  
+  .submit__group {
+    width: 60%;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .geo__row {
+    margin-bottom: 3rem;
+  }
+  
+  /* RESPONESIVE  */
+  @media screen and (max-width: 1443px) {
+    /* HEADER TOP  */
+    .header__item {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 1399px) {
+   /* NUMBER  */
+   .num__row .num__col4 {
+    width: 100%;
+    margin: 1rem 0;
+   }
+
+   /* CUSTOMER  */
+   .cus_col3{
+    margin: 1rem 2rem;
+   }
+  }
+  @media screen and (max-width: 1216px) {
+    /* NAVBAR */
+    .header__other {
+      display: none;
+    }
+  
+    /* RESULT  */
+    .res__check {
+      display: none;
+    }
+    .col-3{
+      width: 50%;
+    }
+  }
+  @media screen and (max-width: 1199.9px) {
+    /* SEARCH BOX  */
+    .finding .f_col4 p{
+      font-size: 0.8rem;
+    }
+  }
+  @media screen and (max-width: 991.9px) {
+    /* SEARCH BOX  */
+    .finding .f_col4{
+      display: block
+    }
+    .finding .f_col4 .f_btn{
+      display: block;
+      width: 60%;
+      margin: 1rem 0;
+    }
+  }
+  @media screen and (max-width: 879.9px) {
+    /* BANNER  */
+    .ba__col5 .banner__item {
+     display: none !important;
+    }
+  }
+  @media screen and (max-width: 767.9px) {
+    /* SEARCH BOX  */
+    .finding .f_col4{
+      display: block
+    }
+    .finding .f_col4 .f_btn{
+      display: block;
+      width: 80%;
+      margin: 1rem 0;
+    }
+  
+    /* RESULT  */
+    .res__trend {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    /* BANNER  */
+    .ba__col5 .banner__sub {
+     display: none;
+    }
+   }
+  @media screen and (max-width: 575.9px) {
+    .input2 .in__col {
+      width: 100%; /* Thiết lập chiều rộng của cột là 100% */
+      margin-bottom: 10px; /* Thêm khoảng cách giữa các cột */
+    }
+    .hide-on-mobile {
+      display: none;
+  }
+  }
+  
+  @media screen and (max-width: 517px) {
+    /* HEADER TOP  */
+    .header__button {
+      display: none;
+    }
+    .header__login {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+  }
+  @media screen and (max-width: 479.9px) {
+    /* SEARCH BOX  */
+    .finding .f_col4{
+      display: block
+    }
+    .finding .f_col4 .f_btn{
+      display: block;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    .col-3{
+      width: 75%;
+    }
+  }
+  @media screen and (max-width: 437px) {
+    /* BANNER  */
+    .ba__col7  {
+     display: none;
+    }
+    .ba__col5  {
+      width: 100%;
+     }
+   }
+  @media screen and (max-width: 422.9px) {
+  .foot__row .f_col4 {
+    display: none;
+  }
+  .foot__row .f_col8 {
+    width: 100%;
+  }
+  }
+  
+  @media screen and (max-width: 361.9px) {
+  
+    /* RESULT  */
+    .res__name, .res__suppli {
+      display: none;
+    }
+  }
+  
+  
+  

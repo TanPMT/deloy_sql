@@ -1,0 +1,225 @@
+  .aboutus_container {
+    min-height: 75px;
+    height: fit-content;
+    width: 100%;
+    padding: 20px 0 20px 0 ;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto 0 auto;
+    justify-content: flex-start;
+  }
+  .aboutus_container .container {
+    margin: 80px auto 50px auto;
+    justify-content: center;
+    align-items: center;
+    max-width: 1320px;
+    padding: 10px 10px 10px 10px;
+    flex-direction: column;
+  }
+  
+  .aboutus_container .container_top {
+    padding: 50px 30px 50px 30px;
+    align-items: center;
+    justify-content: center;
+  }
+  .aboutus_container .container_top .bottom {
+    padding: 50px 30px 50px 30px;
+    align-items: center;
+    justify-content: center;
+
+  }
+  .image {
+    color: black;
+    width: 55%;
+    height: auto;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 10px 7px;
+    border-radius: 10px;
+  }
+  
+  .topText {
+    width: 40%;
+    margin: 0 0 0 40px;
+  }
+  
+  .bottomText {
+    width: 40%;
+    margin: 0 40px 0 0;
+  }
+
+  /* .txt {
+    margin: 0 0 0 0;
+    padding: 10px 10px 10px 10px;
+    line-height: 25px;
+  }
+   */
+  .txt_headingTxt {
+    font-size: 23px;
+    font-weight: bold;
+    line-height: 34px;
+    color: #609966;
+    padding: 0 10px 0 10px;
+    margin: 0 0 10px 0;
+
+  }
+  
+ 
+  
+  .txt_subHeadingTxt {
+    color: rgb(102, 102, 102);
+    font-size: 18px;
+    line-height: 34px;
+    font-weight: bold;
+    padding: 0px 10px 0px 10px;
+    margin: 0 0 15px 0;
+  }
+  
+  .txt_content {
+    font-size: 15px;
+    line-height: 34px;
+    color: rgb(102, 102, 102);
+    margin: 0 0 50px 0;
+    padding: 0 10px 0 10px;
+  }
+  
+  .explore {
+    font-size: 20px;
+    line-height: 28px;
+    color: rgb(255, 255, 255);
+    background-color: #609966;
+    padding: 10px 50px 10px 50px;
+    border-radius: 5px;
+    border-color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all .5s;
+  }
+  
+  .explore:hover {
+    background-color: white;
+    color: #609966;
+    border: 1px solid #609966;
+    
+  }
+  
+ 
+  
+  @media (max-width: 1024px) {
+    .aboutus_container  {
+      padding: 10px 10px 10px 10px;
+    }
+
+    .aboutus_container .container {
+      max-width: 850px;
+    }
+    .aboutus_container .container_top .bottom {
+      margin: 80px auto 50px auto;
+    }
+  
+    .aboutus_container .container_top {
+      max-width: 830px;
+    }
+
+    .topText, .bottomText {
+      width: 40%;
+      margin: 0 0 0 20px;
+    }
+    .topText {
+      margin: 30px 0 0 40px;
+    }
+  
+    .bottomText {
+      margin: 30px 40px 0 0;
+    }
+    .image {
+      width: 55%;
+      height: auto;
+    }
+    .txt .content {
+      font-size: 20px;
+    }
+    .txt_subHeadingTxt {
+      font-size: 22px;
+    }
+
+  }
+  
+  @media (max-width: 768px) {
+
+    .aboutus_container .container_top {
+      flex-direction: column;
+      height: auto;
+      margin: 80px auto 50px auto;
+    }
+
+    .aboutus_container .container_top .bottom {
+      margin: 50px auto 50px auto;
+    }
+
+    .topText,.bottomText {
+      width: 100%;
+      margin: 40px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 0 0 0;
+    }
+      
+    .topText {
+      margin: 40px 0 0 0;
+    }
+    .bottomText {
+      margin: 0 0 40px 0;
+    }
+
+    .image {
+      width: 90%;
+    }
+    .txt_headingTxt {
+      text-align: center;
+    }
+  
+    .txt_subHeadingTxt {
+      text-align: center;
+      font-size: 25px;
+    }
+  
+    .txt_content {
+      text-align: center;
+      font-size: 25px;
+    }
+  
+
+
+  }
+  
+  @media (max-width: 500px) {
+    .aboutus_container .container_top {
+      padding: 10px 0 10px 0;
+      width: 100%;
+      max-width: 100%;
+    }
+  
+    .image {
+      width: 100%;
+    }
+  
+    .aboutus_container .container {
+      padding: 10px 25px 10px 25px;
+    }
+  
+    .txt.subHeadingTxt {
+      font-size: 25px;
+      padding: 0 0 0 0;
+    }
+  
+    .txt.content {
+      font-size: 25px;
+      padding: 0 0 0 0;
+    }
+  
+    .topText, .bottomText {
+      width: 100%;
+      padding: 0 0 0 0;
+    }
+  }

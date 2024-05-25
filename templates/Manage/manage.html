@@ -1,0 +1,242 @@
+{% extends "Manage/base.html" %}
+{%load static%}
+{%block title%}
+<title>Friend of Farmer | Quản lý</title>
+{% endblock title%}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/manage.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@goongmaps/goong-js@1.0.9/dist/goong-js.css" rel="stylesheet" />
+{% endblock head %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+{% if season %}
+
+<section class="section container">
+  <div class="row">
+    <div class="col manage__overall">
+
+      <button class="my-btn" style="width: 50px;" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#season__man" aria-controls="offcanvasExample">
+        <i class="fa fa-bars"></i>
+      </button>
+
+      <div class="offcanvas offcanvas-start season" tabindex="-1" id="season__man"
+           aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header season__header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">MÙA VỤ GIEO TRỒNG</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="off__text">
+            Chứa tất cả những thông tin về tất cả các mùa vụ đã gieo trồng.
+          </div>
+          <div class="dropdown mt-3">
+            {% for item in season %}
+              <button class="my-btn modify season-button" data-season-id="{{ item.id }}" onclick="ClickSeason(event); ClickLand(event)">
+                {{ item.season_name }}
+              </button>
+            {% endfor %}
+
+            <button class="click" style="margin-top: 2rem;" id="click1" onclick="location.href='{% url 'create' %}'">
+              THÊM VỤ MÙA
+            </button>
+            <button class="click" onclick="location.href='{% url 'land' %}'">
+              THÊM ĐẤT ĐAI
+            </button>
+            <button class="click" onclick="location.href='{% url 'plant' %}'">
+              THÊM CÂY TRỒNG
+            </button>
+            <button type="button" class="click" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+              SỬA THÔNG TIN
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-11">
+      <div id="season-info" class="season__info">
+        <p>Tên mùa vụ: <span class="season_name"></span></p>
+        <p>Thời gian bắt đầu: <span class="season-start-time"></span></p>
+        <p>Thời gian kết thúc: <span class="season-end-time"></span></p>
+        <p>Lợi nhuận: <span class="season-profit"></span> USD</p>
+      </div>
+      <div class="row manage__land" id="land-container"> 
+        {% comment %} hahah {% endcomment %}
+      </div>
+      <div class="land__row row my-3">
+        <!-- Load the `goong-geocoder` plugin. -->
+<script src="https://cdn.jsdelivr.net/npm/@goongmaps/goong-geocoder@1.1.1/dist/goong-geocoder.min.js"></script>
+<link
+href="https://cdn.jsdelivr.net/npm/@goongmaps/goong-geocoder@1.1.1/dist/goong-geocoder.css"
+rel="stylesheet"
+type="text/css"
+/>
+ 
+<!-- Promise polyfill script is required -->
+<!-- to use Goong Geocoder in IE 11. -->
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+        <div class="map col-7" id="map">
+        
+        </div>
+        <div class="land__overall col-5">
+          <h3>DIỆN TÍCH: <span id="dientich"></span> ha</h3>
+          <h3>NỒNG ĐỘ</h3>
+
+          <div class="land__nd">
+            <p>Độ pH</p>
+            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25"
+              aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" style="width: 0%; background-color: #60996643;" id="pH"></div>
+            </div>
+          </div>
+          <div class="land__nd">
+            <p>Độ ẩm</p>
+            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25"
+              aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" style="width: 0%; background-color: #60996643" id="doam"></div>
+            </div>
+          </div>
+          <div class="land__plant">
+            <h4>TỔNG QUAN CÂY TRỒNG </h4>
+            <p>Số lượng loại cây: <span id="num_plant"></span></p>
+            <p>Thời gian thu hoạch dự kiến: <span id = "timeCollect"></span></p>
+            {% comment %} <div class="time__left" id = "time_left">
+              
+            </div> {% endcomment %}
+          </div>
+     
+   
+
+    </div>
+
+    <div class="plant" id="plant">
+      {% comment %}  {% endcomment %}
+    </div> 
+
+  
+  </div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width:150%;">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">SỬA THÔNG TIN MÙA VỤ</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body my__form" id="myForm">
+        <div class="formModal">
+        <label for="name">Tên mùa vụ:</label>
+        <input type="text" name="name" id="name">
+        </div>
+        <div class="formModal row">
+        <div class="col-6 formItem">
+        <label for="time_s">Thời gian bắt đầu: </label>
+        <input type="date" name="time_s" id="time_s">
+        </div>
+        <div class="col-6 formItem">
+        <label for="time_e">Thời gian kết thúc: </label>
+        <input type="date" name="time_e" id="time_e">
+        </div>
+        </div>
+        <div class="formModal">
+        <label for="num">Lợi nhuận mong muốn: </label>
+        <input type="number" name="num" id="num">
+         </div>
+      </div>
+      
+      <div id="landContainer" class="modal-body"> 
+       
+      </div>
+      
+
+
+
+      <div class="modal-footer plus">
+        {% for item in season %}
+          <button class="btn" data-season-id="{{ item.id }}" onclick="modifyInfor(event); ClickLandInfor(event)">
+            {{ item.season_name }}
+          </button>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" onclick="UpdateSeason(event)">Cập nhật</button>
+        <button type="button" class="btn btn-danger" onclick="DeleteSeason(event)">Xoá</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+  <section class="manage section container" id="hide">
+    <div class="notify">
+      <p>VUI LÒNG TẠO 1 MÙA VỤ MỚI ĐỂ TIẾN HÀNH THEO DÕI!</p>
+      <form action="{% url 'create' %}">
+        <button class="my-btn" id="createFirst">THÊM MỚI</button>
+      </form>
+    </div>
+  </section>
+{% endif %}
+{% else %}
+    <p class="error">Vui lòng đăng nhập.</p>
+{% endif %}
+
+{% if user.is_authenticated %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>
+	function startTour() {
+		if (localStorage.getItem('doneTourManage') === 'yes') {
+			// Tour đã được hoàn thành trước đây; không hiện tour
+			return;
+		}
+
+		var intro = introJs();
+		intro.setOptions({
+			showProgress: true,
+			showBullets: false,
+			steps: [
+				{
+					intro: 'Đây là nơi bạn sẽ quản lý vụ mùa'
+				},
+        {
+          element: '#createFirst',
+          intro: 'Hãy tạo 1 vụ mùa mới'
+        }
+			]
+		});
+
+		intro.oncomplete(function() {
+			// Khi người dùng nhấn "Done", set giá trị trong localStorage
+			localStorage.setItem('doneTourManage', 'yes');
+		});
+
+		intro.onexit(function() {
+			// Cũng set giá trị khi người dùng thoát ra khỏi intro
+			localStorage.setItem('doneTourManage', 'yes');
+		});
+
+		// Khởi tạo tour
+		intro.start();
+	}
+
+	// Kiểm tra trạng thái tour khi trang được tải
+	window.onload = function() {
+		if (localStorage.getItem('doneTourManage') !== 'yes') {
+			localStorage.setItem('doneTourManage', 'no');
+			startTour();
+		}
+	};
+</script>
+{%endif%}
+
+{% endblock content %}
+
+{% block js_LP %}
+  <script src="{% static 'Manage/JS/manage.js'%}"></script>
+{% endblock js_LP %}

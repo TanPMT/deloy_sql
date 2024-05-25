@@ -1,0 +1,136 @@
+.contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5a8f6050;
+}
+.contact_container{
+    display: flex;
+    align-items: stretch;
+    justify-self: space-between;
+    background-color:#fff ;
+    border-radius: 6px;
+    /* padding: auto; */
+    box-shadow: 0 5px 10px #000 ;
+    width: 60%;
+    margin: 40px 0 40px 0;
+    flex-direction: row;
+   
+}
+.contact_container .content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.contact_container .content .left-side{
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: #609966;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center
+}
+
+.contact_container .content .left-side .detail{
+    /* margin: 14px; */
+    color: #fff;
+}
+.contact_container .content .left-side .detail .topic{
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+
+}
+.contact_container .content .left-side .detail .text{
+    font-size: 14px;
+    color: #fff;
+}
+
+.contact_container .content .right-side{
+    width: 70%;
+    margin: 30px 40px 50px 30px;
+    text-align: justify; 
+    
+}
+.content .right-side .topic{
+    font-size: 18px;
+    color: #000;
+    font-weight: bold;
+
+}   
+.content .right-side .text{
+    font-size: 14px;
+    color: #000;
+}
+.right-side .input-box{
+    height: 50px;
+    width:100%;
+    margin: 12px -10px;
+}
+
+.right-side .input-box input,
+.right-side .input-box textarea{
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: #F0F1F8;
+  border-radius: 6px;   
+  padding: 0 15px;
+  resize: none;
+}
+.right-side .message-box{
+    min-height: 110px;
+}
+
+.right-side .input-box textarea{
+  padding-top: 6px;
+}
+.right-side .button{
+  display: inline-block;
+  margin-top: 12px;
+}
+.right-side .button input[type="submit"]{
+  color: #fff;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: #609966;
+  cursor: pointer;
+  transition: all 0.5s;
+  font-weight: bold;
+  border: 1px solid #609966;
+}
+.button input[type="submit"]:hover{
+  background: white; 
+  color: #609966;
+  border: 1px solid #609966;
+}
+
+@media screen and (max-width: 991.9px){
+    .detail {
+        display: none;
+    }
+    .contact_container .content {
+        display: none;
+        align-items: center;
+        justify-content: none;
+    }
+    .contact_container .content .left-side {
+        display: none; /* Ẩn phần tử "left-side" */
+      }
+    
+    .contact_container .content .right-side{
+        width: 200%;
+        
+        
+    }
+}

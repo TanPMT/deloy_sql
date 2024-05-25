@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  background-color: rgb(248, 248, 248);
+}
+p {
+  margin: 0;
+}
+
+/* CODE TỰ DO  */
+.section {
+  margin-top: 75px; 
+  margin-bottom: 75px;
+
+}
+
+.box {
+  background-color: white;
+  width: 85%;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5rem;
+  padding: 3rem 3rem 3rem 4rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 15px 16.83px 0.17px;
+}
+.signup-content{
+  margin-left: 5%;
+}
+
+.signup-form .form-title {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  margin-bottom: 2rem;
+}
+.form-group {
+ 
+  margin-top: 2rem;
+  padding-bottom: 1rem;
+  width: 80%;
+}
+.line {
+  border-bottom: 1px solid gray;
+}
+
+.text .form-group  input {
+  border: none;
+  width: 80%;
+  padding-left: 1rem;
+}
+.text .form-group  input:focus {
+  border: none;
+ outline: none;
+}
+a {
+  color: black;
+}
+.form-group input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+.form-group .label-agree-term {
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+.form-button input {
+  width: 120px;
+  height: 40px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 5px;
+  background-color: #609966;
+  color: white;
+  border: none;
+  transition: all .5s;
+}
+.form-button input:hover {
+  background-color: white;
+ color: #609966;
+ border: 1px solid #609966;
+}
+.social-login {
+  
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.social-login span{
+  
+ margin-right: 2rem;
+}
+.social-login a{
+  
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 5px;
+}
+.social-login i{
+  font-size: 1.5rem;
+  color: white;
+}
+
+.forgot {
+  display: block;
+  color: #616E85;
+  font-weight: bold;
+  text-decoration: none;
+
+}
+.error {
+  background-color: rgba(255, 0, 0, 0.296);
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  width: 50%;
+}
+.success {
+  background-color: #60996665;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  width: 50%;
+}
+.hidden {
+  display: none;
+}
+.forgot__title {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 575.9px) {
+  /* SEARCH BOX  */
+  .social-label {
+    display: none;
+  }
+
+
+}
+
+@media screen and (max-width: 413px) {
+  .signup {
+    font-size: 0.5rem;
+  }
+  
+}

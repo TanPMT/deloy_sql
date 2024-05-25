@@ -1,0 +1,64 @@
+{% extends "Manage/base.html" %} {% load static %} 
+{%block title%}
+<title>Friend of Farmer | Quản lý</title>
+{% endblock title%}
+{% block head %}
+<link rel="stylesheet" href="{% static 'Manage/CSS/manage_input_lp.css' %}" />
+{% endblock head %} {% block content_lp %}
+
+{% block landform %}
+
+
+{%endblock%}
+<section class="manage section container">
+
+<div class="land__form">					
+  <form action="" method="post">
+    {% csrf_token %} 
+    <h2>THÔNG TIN ĐẤT</h2>
+    
+    <label for="land_name">Tên mảnh đất:</label>
+    <input type="text" name="land_name" id="land_name" placeholder="Mảnh đất 1">
+
+    
+    <label for="land_pos">Vị trí đất:</label>
+    <input type="text" name="land_pos" id="land_pos" placeholder="Nhập địa chỉ hoặc tọa độ GPS">
+
+    <!-- Gợi ý địa chỉ -->
+    <div id="suggestions"></div>
+  
+   
+    <label for="land_area">Diện tích (ha):</label>
+    <input type="number" name="land_area" id="land_area" placeholder="500">
+   
+   
+    <label for="land_pH">Độ pH:</label>
+    <input type="number" name="land_pH" id="land_pH" step="0.01" placeholder="7.5">
+   
+   
+    <label for="land_doAm">Độ ẩm (%):</label>
+    <input type="number" name="land_doAm" id="land_doAm" step="0.01" placeholder="75">
+ 
+    
+    <label for="id_mv">Mùa vụ:</label>
+    <select name="id_mv" id="id_mv" {% if not season_list %}disabled{% endif %}>
+      <option value="" selected {% if not season_list %}disabled{% endif %}>--- Select Season ---</option>
+      {% if season_list %}
+        {% for item in season_list %}
+          <option value="{{ item.id }}">{{ item.season_name }}</option>
+        {% endfor %}
+      {% endif %}
+    </select>   
+    
+    <button type="submit" class="my-btn modify">Lưu thông tin</button>
+  </form>
+  </div>
+</section>
+
+
+
+
+
+  {% endblock content_lp %} {% block js_LP %}
+<script src="{% static 'Manage/JS/landform.js'%}"></script>
+{% endblock js_LP %}

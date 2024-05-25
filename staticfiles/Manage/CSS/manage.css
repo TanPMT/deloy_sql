@@ -1,0 +1,239 @@
+ /* MANAGE  */
+
+ .manage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.manage p {
+  background-color: #EFF2F5;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #616E85;
+  text-align: center;
+}
+
+.manage__overall h5 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 0;
+}
+.season__header {
+  padding-bottom: 0;
+}
+.season .offcanvas-body {
+  padding-top: 0;
+}
+.season .offcanvas-body .off__text {
+  font-size: 1rem;
+  line-height: 25px;
+  color: #609966;
+  padding: 0;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+.modify {
+  display: block;
+  width: 100%;
+  margin: 1rem 0
+}
+.season__info {
+background-color: #EFF2F5;
+border-radius: 5px;
+padding: 20px;
+margin-bottom: 1rem;
+font-weight: bold;
+color: #616E85;
+width: 60%;
+margin-right: auto;
+}
+.season__info p {
+color: #616E85;
+font-size: 1.2rem;
+
+}
+.season__info span {
+color: #609966;
+font-size: 1.2rem;
+
+}
+
+.manage__land .land__item {
+height: 80px;
+width: 200px;
+padding: 10px;
+background-color: #EFF2F5;
+border-radius: 5px;
+text-align: center;
+margin-right: 20px;
+cursor: pointer;
+}
+
+.manage__land .land__item .land__status {
+
+width: 80px;
+border-radius: 20px;
+
+}
+.green {
+background-color: #60996650;
+}
+.red {
+background-color: rgba(255, 0, 0, 0.367);
+}
+.land__row .map iframe {
+width: 100%;
+border: 1px solid #5c5e5f;
+}
+
+.land__overall>h3 {
+padding: 0;
+font-size: 1.5rem;
+font-weight: bold;
+margin-bottom: 0.4rem;
+}
+.land__overall h3 span{
+color: #609966;
+}
+.land__overall h3:nth-child(2){
+font-size: 1.5rem;
+color: #609966;
+}
+.land__nd {
+margin-bottom: 1.2rem;
+}
+
+.land__nd p{
+font-weight: bold;
+color: #609966;
+font-size: 1rem;
+}
+.land__plant {
+width: 100%;
+background-color: #EFF2F5;
+padding: 15px;
+border-radius: 5px;
+}
+.land__plant h4{
+color: #609966;
+font-weight: bold;
+text-transform: uppercase
+}
+.land__plant p{
+margin: 0.5rem 0;
+}
+.land__plant span{
+color: #609966;
+font-weight: bold;
+}
+.click {
+width: 100%;
+height: 40px;
+background-color: #EFF2F5;
+border-radius: 5px;
+border: none;
+padding: 0 10px;
+font-weight: bold;
+text-align: center;
+line-height: 40px;
+margin-bottom: 1rem;
+}
+.p__row {
+padding: 10px;
+font-weight: bold;
+color: #616E85;
+text-align: center;
+font-size: 1rem;
+border-bottom: 1px solid #5c5e5f; 
+align-items: center;
+}
+
+.plant h4 {
+padding-top: 2rem;
+font-size: 1.5rem;
+font-weight: bold;
+margin-bottom: 1rem;
+color: #609966;
+}
+.time__left {
+background-color: #60996684;
+width: 200px;
+border-radius: 5px;
+padding: 10px;
+font-size: 1rem;
+font-weight: bold;
+}
+
+.formModal, .landItem{
+    margin: 10px 5px;
+}
+.formModal input, .landItem input{
+  width: 50%;
+  
+
+  border-bottom: 1px solid black;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 2px;
+  background-color: transparent;
+}
+.formModal input:focus, .landItem input:focus{
+  outline: none;
+}
+.formItem {
+  padding: 0;
+}
+
+.special {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #EFF2F5;
+  margin-bottom: 20px;
+}
+
+.plantContainer {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #60996633;
+  border-radius: 5px;
+}
+.myButton button{
+  margin-right: 15px;
+}
+.myButton {
+  width: 17%;
+  margin-left: auto;
+}
+.plant__status1 {
+  background-color: rgba(0, 128, 0, 0.201);
+  padding: 10px;
+  border-radius: 10px;
+}
+.plant__status2 {
+  background-color: rgba(255, 0, 0, 0.264);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 580px) {
+  .season__info p {
+    font-size: 1rem;
+  }
+
+  .land__overall > h3 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .land__overall h3:nth-child(2){
+    font-size: 1rem;
+  }
+  .land__plant h4{
+    font-size: 1rem;
+  }
+}

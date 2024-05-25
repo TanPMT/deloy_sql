@@ -1,0 +1,69 @@
+{%extends 'Manage/base.html'%}
+{%load static%}
+{%block title%}
+<title>Friend of Farmer | Contact</title>
+{% endblock title%}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/contact.css' %}">
+{% endblock head %}
+
+
+{%block content%}
+<!-- contact -->
+{%if user.is_authenticated%}	
+
+<section>
+    <div class="contact">
+        <div class="contact_container">
+			<div class="content">
+                <div class="left-side">
+                    <div class="detail">
+						<i class="fas fa-map-marker-alt"></i>
+                        <div class="topic">Địa chỉ</div>
+                        <div class="text">Trường Đại học Công nghệ Thông tin, ĐHQG-HCM</div>
+                    </div> 
+                    <div class="detail">
+						<i class="fas fa-phone-alt"></i>
+                        <div class="topic">Số điện thoại</div>
+                        <div class="text">081.675.4927</div>
+                    </div>
+					<div class="detail">
+						<i class="fas fa-envelope"></i>
+                        <div class="topic">Email</div>
+                        <div class="text">fof.nt208@googlegroups.com</div>
+                    </div>  
+                </div>
+				
+				<div class="right-side">
+					<div class="topic">Phản hồi của bạn</div>
+					<div class="text">
+						Nếu bạn có bất kỳ góp ý nào cho chúng tôi hoặc bất kỳ loại thắc mắc nào liên quan đến chúng tôi, bạn có thể gửi tin nhắn cho chúng tôi ở đây. Chúng tôi rất hân hạnh được giúp đỡ bạn.
+					</div>
+					<form action="#" method="post"> <!-- Sửa action thành "#" -->
+						{% csrf_token %} <!-- Thêm token csrf -->
+						</ul>
+						<div class="input-box">
+							<input type="text" name="hoten" placeholder="Nhập tên của bạn" required> <!-- Thêm thuộc tính name -->
+						</div>
+						<div class="input-box">
+							<input type="email" name="email" placeholder="Nhập email của bạn" required> <!-- Thêm thuộc tính name và sử dụng type="email" cho trường email -->
+						</div>
+						<div class="input-box message-box">
+							<textarea name="loinhan" placeholder="Lời nhắn"></textarea required> <!-- Thêm thuộc tính name -->
+						</div>
+						<div class="button">
+							
+							<input type="submit" value="GỬI ĐI"> <!-- Thay type="button" thành type="submit" -->
+							
+						</div>
+					</form>
+				</div>
+				
+            </div>
+        </div>
+    </div>
+</section>
+{%else%}
+<p class="error">Vui lòng đăng nhập.</p>
+{%endif%}
+{%endblock content%}

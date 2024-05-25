@@ -1,0 +1,95 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Friend of Farmer | Đăng ký</title>
+	<!-- TAG -->
+	<link rel="shortcut icon" type="image/png" href="./IMG/Logo.png" />
+
+	<!-- font google  -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+	<!-- font awesome  -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+  <!-- OWL CAROUSEL  -->
+  <link rel="stylesheet" href="{%static  'Manage/CSS/owl.carousel.min.css'%}">
+  <link rel="stylesheet" href="{%static 'Manage/CSS/owl.theme.default.min.css'%}">
+	<!-- css bootstrap  -->
+	<link rel="stylesheet" href="{%static 'Manage/CSS/bootstrap.min.css'%}">
+	<!-- MAIN CSS  -->
+	<link rel="stylesheet" href="{%static 'Manage/CSS/signupV2.css'%}">
+
+</head>
+
+<body>
+	
+    <!-- Sign up form -->
+    <section class="signup">
+        <div class="container">
+            <div class="box">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Đăng kí</h2>
+                        <form method="POST" class="register-form" id="register-form">
+                            {%csrf_token%}
+                            <div class="text">
+                                <div class="form-group line">
+                                    <label for="username"><i class="fa fa-user"></i></label>
+                                    <input type="text" name="username" id="username" placeholder="Tên tài khoản" required/>
+                                </div>
+                                 <div class="form-group line">
+                                    <label for="email"><i class="fa fa-envelope"></i></i></label>
+                                    <input type="email" name="email" id="email" placeholder="Your Email" required/>
+                                </div> 
+                                <div class="form-group line">
+                                    <label for="password"><i class="fa fa-lock"></i></label>
+                                    <input type="password" name="password" id="password" placeholder="Mật khẩu" required/>
+                                </div>
+                                <small id="password-message" class="password-message"></small>
+                                
+                                
+                                <div class="form-group line">
+                                    <label for="confirm_password"><i class="fa fa-user-lock"></i></label>
+                                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Nhập lại mật khẩu" required/>
+                                </div>
+                            </div>
+                           
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required/>
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với tất cả các điều khoản trong <a href="{%url 'dksd'%}" class="term-service">chính sách dịch vụ</a></label>
+                            </div>
+                            <div class="messages" id="message-container">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="form-group form-button" style="margin: 0;">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register" disabled/>
+                            </div>
+                        </form>
+
+                        <a href="{%url "logins"%}" class="forgot">ĐÃ CÓ TÀI KHOẢN</a>
+                    </div>
+                    
+                </div>
+            </div>
+           
+        </div>
+    </section>
+
+    <script src="{% static 'Manage/JS/signup.js'%}"></script>
+
+   
+</body>
+
+</html>

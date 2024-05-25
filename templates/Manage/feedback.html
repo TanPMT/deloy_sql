@@ -1,0 +1,99 @@
+{% extends "Manage/base.html"%}
+{% load static %}
+{%block title%}
+<title>Friend of Farmer | Feedback</title>
+{% endblock title%}
+{% block head %}
+<link rel="stylesheet" href="{%static 'Manage/CSS/maker.css'%}"/>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+{% endblock head %}	
+{% block content %}
+	
+		
+	
+	
+		
+		
+	
+
+<section class="heading__feed">
+    <h3>FEEDBACK TỪ NGƯỜI DÙNG</h3>
+</section>
+
+<!-- RESULT  -->
+<section class="result container section">
+    <div class="row my__row__header row__common">
+        <div class="col-2 res__num common">
+            ID Feedback
+        </div>
+        <div class="col-2 res__name common">
+            User
+        </div>
+        <div class="col-3 res__place common">
+            Email
+        </div>
+        <div class="col-5 res__suppli common">
+            Nội dung
+        </div>
+
+
+    </div>
+
+    {% for item in contact %}
+    <div class="row my__row__res row__common align-items-center">
+        <div class="col-2 res__num common">
+            {{item.id}}
+        </div>
+        <div class="col-2 res__name common">
+            {{item.hoten}}
+        </div>
+        <div class="col-3 res__place common" style="color: #16c784;">
+            {{item.email}}
+        </div>
+        <div class="col-5 res__suppli common" style="font-weight: 500">
+            {{item.loinhan}}
+        </div>
+
+    </div>
+    {% endfor %}
+
+    
+</section>
+
+	<!-- REGISTER  -->
+	<section class="feedback container-fluid section">
+		
+		
+			<div class="row feed__row">
+				<div class="col-6 fe__col6__1 ">
+					<h3>TRỞ THÀNH MẢNH GHÉP CỦA HỆ THỐNG FOF</h3>
+					<p>Hãy đăng ký ngay tài khoản của bạn với chúng tôi để nhận được những thông báo cũng như những dịch vụ
+						tuyệt vời nhất từ chúng tôi.</p>
+					<div class="feed__form">
+						<form action="">
+							<input type="email" placeholder="Nhập địa chỉ email">
+							<button class="my-btn my-3">Đăng ký</button>
+						</form>
+					</div>
+				</div>
+				<div class="col-6 fe__col6 bg">
+					<div class="overplay"></div>
+				</div>
+			</div>
+		
+				
+		
+	</section>
+
+	
+
+
+	
+
+
+
+{% endblock content %}
+
+{% block js_LP %}
+
+{% endblock js_LP %}

@@ -1,0 +1,304 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Friend of Farmer | Quản lý</title>
+
+    <!-- font google  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+	
+    <!-- font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- ANIMATE  -->
+
+	<!-- ChatBot  -->
+	<link rel="stylesheet" href="https://embed.pickaxeproject.com/axe/scripts/fab/styles.css">
+	<script src="https://embed.pickaxeproject.com/axe/scripts/fab/bundle.js"></script>
+	<div id="rendering-information" data-height="500px" data-width="300px" data-formid="FOFGPT_WQ7BX" data-frame-source="https://embed.pickaxeproject.com/axe?id=FOFGPT_WQ7BX&mode=embed_gold&host=beta&theme=light&opacity=100&font_header=Real+Head+Pro&size_header=12&font_body=Real+Head+Pro&size_body=12&font_labels=Real+Head+Pro&size_labels=12&font_button=Real+Head+Pro&size_button=12&c_fb=FFFFFF&c_ff=FFFFFF&c_fbd=888888&c_bb=228DD7&c_bt=FFFFFF&c_t=000000&s_ffo=100&s_bbo=100&s_f=minimalist&s_b=filled&s_t=2&s_to=1&s_r=2" data-title="FOFGPT">
+    <!-- css bootstrap  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+	<link rel="stylesheet" href="https://rsapi.goong.io/{endpoint}?api_key=irESJaYhu9GSYh2g8waOxsDolPKwMzkFcGKNGxNy">
+	<!--IntroJS -->
+	<link rel="stylesheet" href="https://unpkg.com/intro.js/introjs.css"/>
+	<script src="https://unpkg.com/intro.js/intro.js" ></script>
+	<link href="https://unpkg.com/themes/introjs-nazanin.css" rel="stylesheet">
+    <!-- MAIN CSS  -->
+    <link rel="stylesheet" href="{%static 'Manage/CSS/base.css'%}" />
+    {% block head %}{% endblock head %}
+    {% block head1 %}{% endblock head1 %}
+  </head>
+  <body>
+<!--HEADER-->
+<header class="container-fluid">
+		<div class="header">
+			<div class="header__item">
+				<span>Giá gạo </span>
+				&nbsp;
+				<p> 663 USD/tấn</p>
+			</div>
+			<div class="header__item">
+				<span>Giá lúa </span>
+				&nbsp;
+				<p> đ6000/kg</p>
+			</div>
+			<div class="header__item" id="weather-info">
+				
+			</div>
+			
+			
+
+			<div class="header__item">
+				<span>Biến động:</span>
+				&nbsp;
+				<p>đ12456543</p>
+				<i class="fa fa-moon" onclick="myFunction()"></i>
+			</div>
+			<div class="header__button">
+				<button>Get list <i class="fa fa-angle-down"></i></button>
+				<button style="width: 40px;">API</button>
+				<i class="fa fa-align-left fs-6"></i>
+			</div>
+			<div class="header__login">
+				{% if user.is_authenticated %}
+				<div style="display: flex;">
+					<form action="userin4" style="margin-left:8%" >
+						{% csrf_token %}
+						<button class="my-btn-header login" id="login" style="display: inline;" onmouseover="showFullUsername()" onmouseout="showShortenedUsername()">
+							{{ user.username | slice:":12" }}
+						</button>
+						<script>
+							function showFullUsername() {
+							  var btn = document.getElementById('login');
+							  btn.innerHTML = '{{ user.username }}';
+							}
+							function showShortenedUsername() {
+							  var btn = document.getElementById('login');
+							  btn.innerHTML = '{{ user.username | slice:":12" }}';
+							}
+						  </script>
+					</form>
+						<button type="submit" class="my-btn-header login" style="" onclick="location.href='{%url 'Logout_page'%}'">ĐĂNG XUẤT</button>	
+				</div>
+
+				{% else %}
+				<div style="display: flex;">
+					<button type="submit" class="my-btn-header login" onclick="location.href='{%url 'logins'%}'" style="margin-left:8%">ĐĂNG NHẬP</button>
+					<button type="submit" class="my-btn-header login" onclick="location.href='{%url 'signup'%}'" style="margin-left:5%">ĐĂNG KÝ</button>		
+				</div>			
+				{% endif %}
+				
+			</div>
+		</div>
+		<!-- Dark mode -->
+		<style>
+			
+			.dark{
+				background-color: #373535;
+				color: #e6e6e6;
+			}
+		</style>
+
+		<script>
+			function myFunction() {
+			let element = document.body;
+			element.classList.toggle("dark");
+			
+			// Save dark mode state in local storage.
+			if (element.classList.contains("dark")) {
+				localStorage.setItem('dark_mode', 'true');
+			} else {
+				localStorage.setItem('dark_mode', 'false');
+			}
+			}
+			
+			// Get dark mode state from local storage.
+			if (localStorage.getItem('dark_mode') === 'true') {
+			document.body.classList.add("dark");
+			}
+		</script>
+
+		<nav class="navbar navbar-expand-lg header__menu">
+			<div class="container-fluid">
+				<a class="navbar-brand header__logo" href="{%url 'index'%}">FOF</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0 header__fun">
+						<li class="nav-item">
+							<a class="nav-link " aria-current="page" href="{%url 'index'%}"> <i class="fa fa-home"></i> </a>
+						</li>
+						<li class="nav-item" id="manageItem">
+							<a class="nav-link" href="{%url 'manage'%}">Quản lý</a>
+						</li>
+						<li class="nav-item" id="tradeItem">
+							<a class="nav-link" href="{% url 'maker'%}">Tìm kiếm</a>
+						</li>
+						<li class="nav-item" id="materialItem">
+							<a class="nav-link" href="{%url 'search'%}">Nguyên liệu</a>
+						</li>
+						<li class="nav-item" id="contactItem">
+							<a class="nav-link" href="{% url 'contact'%}">Liên hệ</a>
+						</li>
+						<li class="nav-item" id="hotNewsItem">
+							<a class="nav-link" href="#">Tin nóng</a>
+						</li>
+						<li class="nav-item" id="listItem">
+							<a class="nav-link" href="#">Danh mục</a>
+						</li>
+						<li class="nav-item" id="notifyItem">
+							{% if user.is_authenticated %}
+							<div class="nav-link">
+							<span onclick="location.href='{%url 'notify'%}'">{{ request.user.customer.count_unread_notifications }} Thông báo</span>
+							</div>
+							{%endif%}
+						</li>
+					</ul>
+					<form id="search-form" action="https://www.google.com/search" method="get" class="d-flex" role="search">
+						<input class="form-control me-2" type="text" id="search-input" name="q" placeholder="Tìm kiếm">
+					</form>
+				</div>
+			</div>
+		</nav>		
+</header>
+
+    {% block content %}{% endblock content %}
+    {% block form %}{% endblock form %}
+	{% block content_lp %}{% endblock content_lp%}
+	{% block landform %}{% endblock landform %}
+	{% block notify %}{% endblock notify %}
+	{% block content_index %}{% endblock content_index %}
+	{% block content_aboutus %}{% endblock content_aboutus %}
+	{%block content_dksd%}{%endblock content_dksd%}
+	{%block content_csrt%}{%endblock content_csrt%}
+
+    <!--FOOTER-->
+    <footer>
+		<div class="container-fluid section">
+			<div class="container">
+				<div class="row foot__row">
+					<div class="col-4 f_col4" >
+						<p>Friend of Farmer</p>
+					</div>
+					<div class="col-8 f_col8 d-flex justify-content-center">
+						<div class="footer__item" style="width:30%">
+							<h3>Dự án</h3>
+							<ul>
+								<li><a class="nav-link" href="{%url 'aboutus'%}">About us</a></li>
+								<li><a class="nav-link" href="{%url 'dksd'%}">Điều khoản sử dụng</a></li>
+								<li><a class="nav-link" href="{%url 'csrt'%}">Chính sách</a></li>
+								<li><a class="nav-link" href="{%url 'aboutus'%}">Sứ mệnh</a></li>
+								<li><a class="nav-link" href="{%url 'contact'%}">Liên hệ</a></li>
+							</ul>
+						</div>
+						<div class="footer__item" style="width:30%">
+							<h3>Dịch vụ</h3>
+							<ul>
+								<li><a class="nav-link" href="{%url 'manage'%}">Quản lý</a></li>
+								<li><a class="nav-link" href="{%url 'maker'%}">Thị trường</a></li>
+								<li><a class="nav-link" href="{%url 'search'%}">Tìm kiếm</a></li>
+								<li><a class="nav-link" href="{%url 'index'%}">Trợ lý</a></li>
+								<li><a class="nav-link" href="{%url 'contact'%}">Giải đáp</a></li>
+							</ul>
+						</div>	
+						<div class="footer__item" style="width:30%">
+							<h3>Mạng xã hội</h3>
+							<ul>
+								<li><a class="nav-link" href="https://www.facebook.com/">Facebook</a></li>
+								<li><a class="nav-link" href="https://twitter.com/?lang=vi">X</a></li>
+								<li><a class="nav-link" href="https://www.instagram.com/">Instagram</a></li>
+								<li><a class="nav-link" href="https://www.pinterest.com/">Pinterest</a></li>
+								<li><a class="nav-link" href="https://www.linkedin.com/">LinkedIn</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="foot__copy">
+					<p>&copy;2024 FriendofFarmer. All rights reserved</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+    <!-- JS -->
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+      crossorigin="anonymous"
+    ></script>
+	
+    <!--MY JS-->
+    <script src="{%static 'Manage/JS/base.js'%}"></script>
+	<script>
+        function getLocation() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
+        fetchWeatherData(position.coords.latitude, position.coords.longitude);
+      }, error => {
+        console.error(error);
+      });
+    } else {
+      alert("Geolocation is not available.");
+    }
+  }
+  
+  function fetchWeatherData(latitude, longitude) {
+  const endpoint = `/get-weather/?latitude=${latitude}&longitude=${longitude}`;
+  fetch(endpoint)
+    .then(response => response.json())
+    .then(data => {
+      // Hiển thị thông tin thời tiết tại đây
+      document.getElementById('weather-info').innerHTML = `
+	  	<div class="header__item">
+				<span>Nhiệt độ: </span>
+				&nbsp;
+				<p> ${data.temperature}°C</p>
+		</div>
+		<div class="header__item">
+				<span>Thời tiết: </span>
+				&nbsp;
+				<p> ${data.condition}</p>
+		</div>
+      `;
+    })
+    .catch(error => console.error('Error:', error));
+}
+getLocation();
+    </script>
+
+	{% block js_LP %}{% endblock js_LP %}
+  </body>
+</html>
